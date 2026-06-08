@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejs模板</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <h1>当前用户：<%= username %></h1>
+    <h1>用户列表</h1>
+    <table id='user_table'>
+        <tr>
+            <th>编号</th>
+            <th>用户名</th>
+            <th>年龄</th>
+            <th>地址</th>
+            <th>操作</th>
+        </tr>
+        <% for(let user of users){ %>
+            <tr>
+                <td>
+                    <%= user.id %>
+                </td>
+                <td>
+                    <%= user.name %>
+                </td>
+                <td>
+                    <%= user.age %>
+                </td>
+                <td>
+                    <%= user.gender %>
+                </td>
+                <td>
+                    <%= user.address %>
+                </td>
+                <td>
+                    <a href="/users/delete_user?id=<%= user.id %>">删除</a>
+                    <a href="/users/update_page?id=<%= user.id %>">修改</a>
+                </td>
+            </tr>
+            <% } %>
+    </table>
+
+<a href="/auth/logout">退出登录</a>
+
+    <hr>
+
+                <div>
+                    添加用户：
+                    <br>
+                    <form action="/users/add_user" method="post">
+                        姓名：
+                        <input type="text" id="name" name="name" required>
+                        <br>
+                        年龄：
+                        <input type="number" id="age" name="age" max="150" required>
+                        <br>
+                        <label for="gender">性别：</label>
+                        <input type="radio" name="gender" value="男">男
+                        <input type="radio" name="gender" value="女">女
+                        <br>
+                        地址：
+                        <input type="text" id="address" name="address" required>
+                        <br>
+                        <button type="submit">添加用户</button>
+                    </form>
+                </div>
+
+    <!-- <script>
+        let users = <%- JSON.stringify(users) %>;
+        console.log(users);
+        const table = document.getElementById('user_table');
+        for(let user of users){
+            table.insertAdjacentHTML('beforeend', `
+                <tr>
+                    <td>${user.name}</td>
+                    <td>${user.age}</td>
+                    <td>${user.address}</td>
+                </tr>
+            `);
+        };
+    </script> -->
+
+    <!-- <script>
+        const tbody = document.getElementById('user_table').children[0];
+        tbody.addEventListener('click', (event)=>{
+            let id = event.target.parentNode.parentNode.firstElementChild.innerText;
+
+        });
+    </script> -->
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<div>
+    修改用户：
+    <br>
+    <form action="/users/update_user" method="post">
+        <input type="hidden" name="id" value=<%= user.id %>>
+        姓名：
+        <input type="text" id="name" name="name" required value=<%= user.name %>>
+        <br>
+        年龄：
+        <input type="number" id="age" name="age" max="150" required value=<%= user.age %>>
+        <br>
+        性别：
+        <input type="radio" name="gender" value="男" <%= user.gender === '男' ? 'checked' : '' %>>男
+        <input type="radio" name="gender" value="女" <%= user.gender === '女' ? 'checked' : '' %>>女
+        <br>
+        地址：
+        <input type="text" id="address" name="address" required value=<%= user.address %>>
+        <br>
+        <button type="submit">修改用户</button>
+    </form>
+</div>
